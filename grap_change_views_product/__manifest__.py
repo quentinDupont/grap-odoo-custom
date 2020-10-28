@@ -46,6 +46,7 @@
     ],
     "data": [
         "views/menu.xml",
+        "views/view_product_category.xml",
         "views/view_product_margin_classification.xml",
         "views/view_product_pricelist.xml",
         "views/view_product_pricelist_item.xml",
