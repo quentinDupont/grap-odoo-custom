@@ -20,23 +20,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                   <label for="product_tmpl_id" string="Bill of Materials"/>
                   <h1><field name="product_tmpl_id" readonly="1"/></h1>
                 </div>
-                <p class="alert alert-warning" role="alert" groups="mrp_food.seasonality_manager" attrs="{'invisible': ['|', ('is_bom_seasonal', '=', True), '&amp;', ('is_bom_seasonal', '=', False), ('are_bom_lines_seasonals', '=', False)]}">
-                  ⚠️ This Bill Of Materials is not in season (according to seasonality bom field).
-                </p>
-                <p class="alert alert-warning" role="alert" groups="mrp_food.seasonality_manager" attrs="{'invisible': ['|', ('are_bom_lines_seasonals', '=', True), '&amp;', ('is_bom_seasonal', '=', False), ('are_bom_lines_seasonals', '=', False)]}">
-                  ⚠️ Some composants are not in season:
-                  <b><field name="products_not_in_season" readonly="1"/></b>
-                </p>
-                <p class="alert alert-warning" role="alert" groups="mrp_food.seasonality_manager" attrs="{'invisible': ['|', ('is_bom_seasonal', '=', True), ('are_bom_lines_seasonals', '=', True)]}">
-                  ⚠️ This Bill Of Materials is not in season, and neither are these components:
-                  <b><field name="products_not_in_season" readonly="1"/></b>
-                </p>
             </xpath>
             <xpath expr="//field[@name='company_id']" position="after">
                 <br/>
-                <field name="bom_season_ids" string="Seasonality" groups="mrp_food.seasonality_manager" widget="many2many_tags" options="{'color_field': 'color', 'no_quick_create': True}"/>
-                <field name="is_bom_seasonal" groups="base.group_no_one"/>
-                <field name="are_bom_lines_seasonals" groups="base.group_no_one"/>
                 <field name="bom_allergen_ids" widget="many2many_tags"/>
                 <field name="bom_label_ids" widget="many2many_tags"/>
             </xpath>
@@ -45,8 +31,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']" position="after">
                 <field name="label_ids" widget="many2many_tags"/>
                 <field name="allergen_ids" widget="many2many_tags"/>
-                <field name="seasonality_ids" groups="mrp_food.seasonality_manager" widget="many2many_tags" options="{'color_field': 'color', 'no_quick_create': True}"/>
-                <field name="is_seasonal" groups="base.group_no_one"/>
             </xpath>
             <notebook position="inside">
                 <page class="notebook_images" string="Images">
@@ -70,7 +54,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_qty']" position="before">
-                <field name="bom_season_ids" groups="mrp_food.seasonality_manager" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="bom_label_ids" widget="many2many_tags"/>
                 <field name="bom_allergen_ids" widget="many2many_tags"/>
             </xpath>
@@ -85,13 +68,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='normal']" position="after">
-              <separator/>
-              <filter string="Seasonal ☀️" name="is_bom_seasonal" domain="[('is_bom_seasonal', '=', True)]"/>
-              <separator/>
-            </xpath>
             <xpath expr="//field[@name='product_tmpl_id']" position="after">
-                <field name="bom_season_ids" groups="mrp_food.seasonality_manager"/>
                 <field name="bom_label_ids"/>
                 <field name="bom_allergen_ids"/>
             </xpath>

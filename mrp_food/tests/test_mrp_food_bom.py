@@ -2,7 +2,6 @@
 # @author: Quentin DUPONT (quentin.dupont@grap.coop)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -10,15 +9,9 @@ class TestMrpFoodBom(TransactionCase):
     def setUp(self):
         super(TestMrpFoodBom, self).setUp()
         self.bom_tomato_tart = self.env.ref("mrp_food.demo_bom_tomato_tart")
-        self.bom_lines_not_seasonal = self.env.ref(
-            "mrp_food.demo_bom_lines_not_seasonal"
-        )
         self.bom_tomato_tart_tomatoes = self.env.ref(
             "mrp_food.demo_bom_tomato_tart_line_tomatoes"
         )
-        self.seasonality_all = self.env.ref("mrp_food.demo_seasonality_all_season")
-        self.seasonality_line_all = self.env.ref("mrp_food.demo_seasonality_all_line")
-        self.peach = self.env.ref("mrp_food.demo_product_peach_no_season")
 
     def test_01_bom_price_subtotal_line(self):
         self.assertEqual(
@@ -41,43 +34,3 @@ class TestMrpFoodBom(TransactionCase):
             self.bom_tomato_tart.standard_price_total,
             0,
         )
-
-    def test_03_seasonality_check_constrains(self):
-        new_seasonality_line = self.env["seasonality.line"].create(
-            {"name": "Wrong line", "date_start": "2024-01-01", "date_end": "2025-01-01"}
-        )
-        with self.assertRaises(ValidationError):
-            new_seasonality_line.write({"date_end": "2023-01-01"})
-
-    def test_04_bom_seasonality(self):
-        self.bom_tomato_tart.write({"bom_season_ids": [(5, 0)]})
-        self.assertEqual(
-            self.bom_tomato_tart.is_bom_seasonal,
-            False,
-        )
-        self.bom_tomato_tart.write({"bom_season_ids": [(4, self.seasonality_all.id)]})
-        self.assertEqual(
-            self.bom_tomato_tart.is_bom_seasonal,
-            True,
-        )
-
-    def test_05_bom_lines_seasonalities(self):
-        self.assertEqual(
-            self.bom_lines_not_seasonal.products_not_in_season, "Chickpea."
-        )
-        self.bom_lines_not_seasonal.write(
-            {"bom_line_ids": [(0, 0, {"product_id": self.peach.id, "product_qty": 1})]}
-        )
-        self.assertEqual(
-            self.bom_lines_not_seasonal.products_not_in_season, "Chickpea, Peach."
-        )
-
-    def test_06_check_update_seasonality(self):
-        self.assertEqual(self.bom_lines_not_seasonal.is_bom_seasonal, True)
-        self.env["mrp.bom"].cron_seasonality_bom_check_state()
-        # Check without any changes
-        self.assertEqual(self.bom_lines_not_seasonal.is_bom_seasonal, True)
-        # "All season" became not seasonal
-        self.seasonality_line_all.write({"date_end": "2000-01-02"})
-        self.env["mrp.bom"].cron_seasonality_bom_check_state()
-        self.assertEqual(self.bom_lines_not_seasonal.is_bom_seasonal, False)

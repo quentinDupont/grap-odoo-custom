@@ -2,7 +2,6 @@ MRP modules adapted for food-related professions (it needs product_food generic 
 
 Improve Bill Of Materials :
 - Price on lines and total
-- Seasonality for BoM and its lines
 - Allergens
 
 Add new views :

@@ -5,7 +5,7 @@
 {
     "name": "MRP for Food",
     "summary": "MRP modules adapted for food-related professions",
-    "version": "12.0.2.2.1",
+    "version": "12.0.3.0.0",
     "category": "GRAP - Custom",
     "author": "GRAP",
     "website": "https://github.com/grap/grap-odoo-custom",
@@ -24,23 +24,15 @@
     ],
     "demo": [
         "demo/allergens.xml",
-        "demo/seasonality.xml",
-        "demo/seasonality_line.xml",
         "demo/product.xml",
         "demo/bom.xml",
-        "demo/res_groups.xml",
     ],
     "data": [
-        "security/ir_rule.xml",
-        "security/ir.model.access.csv",
-        "security/res_groups.xml",
         "views/view_mrp_bom.xml",
         "views/view_product_allergen.xml",
         "views/view_product_product.xml",
         "views/view_product_template.xml",
-        "views/view_seasonality.xml",
         "views/assets.xml",
-        "data/ir_cron.xml",
     ],
     "images": [
         "./static/img/tomato_pie.png",

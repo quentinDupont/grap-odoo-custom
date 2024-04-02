@@ -14,9 +14,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_all"/>
         <field name="standard_price">4</field>
         <field name="is_alimentary">1</field>
-        <field name="product_seasonality_ids" eval="[
-          (4, ref('mrp_food.demo_seasonality_spring')),
-          ]" />
         <field name="label_ids" eval="[
             (4, ref('product_label.label_agriculture_biologique')),
             ]"/>
@@ -29,9 +26,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="categ_id" ref="product.product_category_all"/>
         <field name="standard_price">3</field>
         <field name="is_alimentary">1</field>
-        <field name="product_seasonality_ids" eval="[
-            (4, ref('mrp_food.demo_seasonality_summer')),
-            ]" />
         <field name="label_ids" eval="[
             (4, ref('product_label.label_agriculture_biologique')),
             ]"/>
@@ -47,9 +41,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="allergen_ids" eval="[
           (4, ref('mrp_food.demo_allergen_mustard')),
           ]" />
-        <field name="product_seasonality_ids" eval="[
-          (4, ref('mrp_food.demo_seasonality_all_season')),
-          ]" />
     </record>
 
     <record model="product.product" id="demo_product_pie">
@@ -60,34 +51,12 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="allergen_ids" eval="[
           (4, ref('mrp_food.demo_allergen_gluten')),
           ]" />
-        <field name="product_seasonality_ids" eval="[
-          (4, ref('mrp_food.demo_seasonality_all_season')),
-          ]" />
-    </record>
-
-    <record model="product.product" id="demo_product_chickpea_no_season">
-        <field name="name">Chickpea</field>
-        <field name="categ_id" ref="product.product_category_all"/>
-        <field name="is_alimentary">1</field>
-        <field name="standard_price">3</field>
-    </record>
-
-    <record model="product.product" id="demo_product_peach_no_season">
-        <field name="name">Peach</field>
-        <field name="categ_id" ref="product.product_category_all"/>
-        <field name="is_alimentary">1</field>
-        <field name="standard_price">3</field>
     </record>
 
     <record model="product.template" id="demo_product_template_tomato_tart">
         <field name="name">Tomato pie</field>
         <field name="categ_id" ref="product.product_category_all"/>
         <field name="image" type="base64" file="mrp_food/static/img/tomato_pie.png"/>
-    </record>
-
-    <record model="product.template" id="demo_product_template_not_seasonal">
-        <field name="name">Not seasonal product</field>
-        <field name="categ_id" ref="product.product_category_all"/>
     </record>
 
 

@@ -20,25 +20,6 @@ class ProductProduct(models.Model):
         "certainly not up to date.",
     )
 
-    @api.model
-    def _get_default_seasonalities(self):
-        return (
-            self.env["seasonality"].search([("use_by_default_product", "=", True)]).ids
-        )
-
-    product_seasonality_ids = fields.Many2many(
-        comodel_name="seasonality",
-        string="Seasonalities",
-        default=lambda self: self._get_default_seasonalities(),
-    )
-
-    is_seasonal = fields.Boolean(
-        string="Is Seasonal",
-        help="Computed thanks to choosen seasonalities.\
-              It is enough that a selected season matches",
-        compute="_compute_is_seasonal",
-        default=False,
-    )
     # because the computation is based on mrp.bom.line,
     # that is not available for user that doesn't belong to mrp user group
     is_component = fields.Boolean(
@@ -61,21 +42,6 @@ class ProductProduct(models.Model):
     def _onchange_date_last_statement_price(self):
         for product in self:
             product.date_last_statement_price = fields.Date.today()
-
-    @api.depends("product_seasonality_ids")
-    @api.multi
-    def _compute_is_seasonal(self):
-        today = fields.Date.today()
-        _is_seasonal = False
-        for product in self:
-            for seasonality in product.product_seasonality_ids:
-                for period in seasonality.seasonality_line_ids:
-                    if today >= period.date_start and today <= period.date_end:
-                        _is_seasonal = True
-                        break  # One is enough to write that this is seasonal
-                if _is_seasonal:
-                    break
-            product.is_seasonal = _is_seasonal
 
     @api.depends("bom_line_ids")
     @api.multi

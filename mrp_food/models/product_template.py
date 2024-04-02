@@ -14,22 +14,6 @@ class ProductTemplate(models.Model):
         readonly=False,
     )
 
-    product_seasonality_ids = fields.Many2many(
-        comodel_name="seasonality",
-        string="Seasonalities",
-        related="product_variant_ids.product_seasonality_ids",
-        readonly=False,
-    )
-
-    is_seasonal = fields.Boolean(
-        string="Is Seasonal",
-        help="Computed thanks to choosen seasonalities.\
-              It is enough that a selected season matches",
-        related="product_variant_ids.is_seasonal",
-        default=False,
-        readonly=False,
-    )
-
     is_component = fields.Boolean(
         related="product_variant_ids.is_component", default=False, readonly=False
     )
