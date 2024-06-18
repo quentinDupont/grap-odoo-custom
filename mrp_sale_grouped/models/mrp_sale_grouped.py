@@ -140,12 +140,10 @@ class MrpSaleGrouped(models.Model):
         for grouped_prod in self:
             grouped_prod.product_wo_bom_qty = len(grouped_prod.product_wo_bom_ids)
 
-    @api.multi
     def confirm_all_sale_order(self):
         for sale_grouped in self:
             sale_grouped.mapped("order_ids").action_confirm()
 
-    @api.multi
     def action_view_production(self):
         action = self.env.ref("mrp.mrp_production_action").read()[0]
         if self.mrp_production_qty > 1:
