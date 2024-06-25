@@ -16,6 +16,7 @@
         "web_widget_color",
         "purchase_triple_discount",
         # GRAP modules,
+        "mrp_bom_tag",
         "product_food",
         "product_label",
         "product_main_seller",
