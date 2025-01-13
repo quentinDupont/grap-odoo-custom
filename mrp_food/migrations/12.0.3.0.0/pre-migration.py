@@ -8,7 +8,6 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
-
     # create new tags from seasonality
     openupgrade.logged_query(
         env.cr,
