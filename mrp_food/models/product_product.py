@@ -44,7 +44,6 @@ class ProductProduct(models.Model):
             product.date_last_statement_price = fields.Date.today()
 
     @api.depends("bom_line_ids")
-    @api.multi
     def _compute_is_component_intermediate(self):
         for product in self:
             if product.bom_line_ids:

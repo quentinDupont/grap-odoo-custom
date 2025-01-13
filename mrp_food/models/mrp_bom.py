@@ -30,7 +30,6 @@ class MrpBom(models.Model):
     #
     # Other functions
     #
-    @api.multi
     @api.depends("product_id", "bom_line_ids.allergen_ids")
     def _compute_bom_allergen_ids(self):
         for bom in self:
