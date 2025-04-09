@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestStandardPrice(TransactionCase):
     def setUp(self):
-        super(TestStandardPrice, self).setUp()
+        super().setUp()
         # Product and its supplier info
         self.office_chair = self.env.ref("product.product_delivery_01")
         self.office_chair_std_p = self.office_chair.standard_price
