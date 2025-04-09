@@ -4,7 +4,6 @@
 
 from odoo import _, api, fields, models
 
-from odoo.addons import decimal_precision as dp
 
 
 class SupplierInfo(models.Model):
@@ -21,14 +20,13 @@ class SupplierInfo(models.Model):
     )
 
     diff_supplierinfo_product_standard_price = fields.Float(
-        digits=dp.get_precision("Product Price"),
+        digits="Product Price",
         compute="_compute_diff_supplierinfo_product_standard_price",
     )
 
     #
     # Other functions
     #
-    @api.multi
     @api.depends("product_id", "product_id.standard_price")
     def _compute_product_standard_price(self):
         for supplierinfo in self:
@@ -36,7 +34,6 @@ class SupplierInfo(models.Model):
                 supplierinfo.product_tmpl_id.standard_price
             )
 
-    @api.multi
     @api.depends(
         "price",
         "discount",
@@ -70,7 +67,6 @@ class SupplierInfo(models.Model):
                     )
                 )
 
-    @api.multi
     @api.depends(
         "price", "discount", "discount2", "discount3", "product_standard_price"
     )
@@ -82,7 +78,6 @@ class SupplierInfo(models.Model):
             )
 
     # Functions to change product fields
-    @api.multi
     def set_product_standard_price_from_supplierinfo(self):
         for supplierinfo in self.filtered(lambda x: x.product_tmpl_id):
             old_product_standard_price = supplierinfo.product_tmpl_id.standard_price
