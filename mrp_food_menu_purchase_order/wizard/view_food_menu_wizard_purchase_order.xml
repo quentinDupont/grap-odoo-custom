@@ -12,7 +12,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <form>
                 <group col="12">
                   <group string="Informations on PDF" colspan="6">
-                      <field name="option_production_date"/>
+                      <field name="option_split_purchase_1_date"/>
+                      <field name="option_split_purchase_1_categories"/>
                   </group>
                 </group>
                 <group string="Choose the products categories for which you want to split the purchase orders " col="12">

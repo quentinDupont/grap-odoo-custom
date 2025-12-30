@@ -9,9 +9,14 @@ class FoodMenuWizardPurchaseOrder(models.TransientModel):
     _name = "food.menu.wizard.purchase.order"
     _description = "Wizard for launching purchase order"
 
-    option_production_date = fields.Date(
-        string="Production Date",
+    option_split_purchase_1_date = fields.Date(
+        string="Split Purchase 1",
         default=lambda s: s._default_production_date(),
+    )
+
+    option_split_purchase_1_categories = fields.One2many(
+        comodel_name="product.category",
+        help="Products in theses categories would be split in two purchase orders.",
     )
 
     @api.model
