@@ -61,6 +61,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <field name="display_type" invisible="1"/>
                                 <field name="company_id" invisible="1" />
                                 <field name="sequence" widget="handle" />
+                                <field name="date"/>
                                 <field
                                         name="product_id"
                                         attrs="{

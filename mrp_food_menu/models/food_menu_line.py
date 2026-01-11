@@ -46,6 +46,8 @@ class FoodMenuLine(models.Model):
         help="Technical field for UX purpose.",
     )
 
+    date = fields.Datetime()
+
     product_id = fields.Many2one(
         comodel_name="product.product",
     )
