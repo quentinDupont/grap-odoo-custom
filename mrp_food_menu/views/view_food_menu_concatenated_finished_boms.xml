@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2026 - Today: GRAP (https://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- MRP Food menu Tree -->
+    <record id="view_food_menu_concatenated_finished_boms" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.finished.boms</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_id" invisible="1" />
+                <field name="menu_id" optional="hide"/>
+                <field name="id"/>
+                <field name="date"/>
+                <field name="bom_id"/>
+                <field name="product_id"/>
+                <field name="product_uom_qty"/>
+                <field name="product_uom_id" groups="uom.group_uom" />
+                <field name="currency_id" invisible="1" />
+                <field name="lst_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

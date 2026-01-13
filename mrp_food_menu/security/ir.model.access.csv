@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_mrp_food_menu_all,MRP Menu Food All,mrp_food_menu.model_mrp_food_menu,mrp.group_mrp_user,1,1,1,1
 access_mrp_food_menu_line_all,MRP Menu Food Line All,mrp_food_menu.model_mrp_food_menu_line,mrp.group_mrp_user,1,1,1,1
+access_mrp_food_menu_concated_finished_boms_all,MRP Menu Food Concated Finished BoMs All,mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms,mrp.group_mrp_user,1,1,1,1

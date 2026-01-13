@@ -94,3 +94,26 @@ class FoodMenuLine(models.Model):
     def _onchange_product_id(self):
         for menu_line in self.filtered(lambda x: x.product_id.bom_count != 0):
             menu_line.bom_id = menu_line.product_id.bom_ids[0]
+
+    # For each changes (create, update, delete), need to recompute concatened boms
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        records.mapped("menu_id")._recompute_concatenated_boms()
+        return records
+
+    def write(self, vals):
+        tracked_fields = {"product_id", "bom_id", "product_uom_qty"}
+
+        res = super().write(vals)
+
+        if tracked_fields & vals.keys():
+            self.mapped("menu_id")._recompute_concatenated_boms()
+
+        return res
+
+    def unlink(self):
+        menus = self.mapped("menu_id")
+        res = super().unlink()
+        menus._recompute_concatenated_boms()
+        return res

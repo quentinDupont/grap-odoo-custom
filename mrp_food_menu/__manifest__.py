@@ -23,6 +23,7 @@
         "security/ir_rule.xml",
         "security/ir.model.access.csv",
         "views/view_food_menu.xml",
+        "views/view_food_menu_concatenated_finished_boms.xml",
     ],
     "installable": True,
 }

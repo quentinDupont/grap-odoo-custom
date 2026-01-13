@@ -40,6 +40,14 @@ class FoodMenu(models.Model):
         compute="_compute_product_wo_bom_qty",
     )
 
+    # Concatenated BoM Lines
+    concatenated_finished_bom_ids = fields.One2many(
+        comodel_name="mrp.food.menu.concatenated.finished.boms",
+        inverse_name="menu_id",
+        compute="_compute_concatenated_finished_bom_ids",
+        store=True,
+    )
+
     # Methods for Products without any BoM
     @api.depends("menu_line_ids")
     def _compute_product_wo_bom_ids(self):
@@ -52,6 +60,34 @@ class FoodMenu(models.Model):
     def _compute_product_wo_bom_qty(self):
         for food_menu in self:
             food_menu.product_wo_bom_qty = len(food_menu.product_wo_bom_ids)
+
+    # Methods for Concatenated BoM Lines
+    # To be indempotent, we need to recomputer to sum well the same product qties
+    def _recompute_concatenated_boms(self):
+        Concat = self.env["mrp.food.menu.concatenated.finished.boms"]
+
+        for menu in self:
+            Concat.search([("menu_id", "=", menu.id)]).unlink()
+
+            futur_concat = {}
+
+            for line in menu.menu_line_ids.filtered(lambda x: not x.display_type):
+                # Group by Product and BoM
+                key = (line.product_id.id, line.bom_id.id)
+
+                if key not in futur_concat:
+                    futur_concat[key] = {
+                        "menu_id": menu.id,
+                        "date": line.date,
+                        "product_id": line.product_id.id,
+                        "bom_id": line.bom_id.id,
+                        "product_uom_qty": 0.0,
+                    }
+
+                futur_concat[key]["product_uom_qty"] += line.product_uom_qty
+
+            for vals in futur_concat.values():
+                Concat.create(vals)
 
     # Default methods
     @api.model
