@@ -7,15 +7,15 @@ from odoo import fields, models
 
 # The aim is to sum the quantities of each Finished Products of the Menu
 # So there is just one line per Products / BoM per Food Menu
-class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
-    _name = "mrp.food.menu.concatenated.finished.boms"
-    _description = "Food Menu all Concatenated Finished BoMs"
+class FoodMenuMrpConcatenatedIntermediateBoms(models.Model):
+    _name = "mrp.food.menu.concatenated.intermediate.boms"
+    _description = "Food Menu all Concatenated Intermediate BoMs"
 
     _sql_constraints = [
         (
-            "uniq_menu_concat_finish_product_bom",
+            "uniq_menu_concat_inter_product_bom",
             "unique(menu_id, product_id, bom_id)",
-            "Duplicate concatenated Finished BoM line",
+            "Duplicate concatenated Intermediate BoM line",
         ),
     ]
 
@@ -54,10 +54,6 @@ class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
     currency_id = fields.Many2one(
         comodel_name="res.currency",
         related="product_id.currency_id",
-    )
-
-    lst_price = fields.Float(
-        related="product_id.lst_price",
     )
 
     bom_id = fields.Many2one(

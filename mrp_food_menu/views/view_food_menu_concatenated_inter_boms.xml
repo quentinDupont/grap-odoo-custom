@@ -6,8 +6,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
 
-    <record id="view_food_menu_concatenated_finished_boms" model="ir.ui.view">
-        <field name="model">mrp.food.menu.concatenated.finished.boms</field>
+    <record id="view_food_menu_concatenated_intermediate_boms" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="company_id" invisible="1" />
@@ -20,7 +20,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="product_uom_id" groups="uom.group_uom" />
                 <field name="currency_id" invisible="1" />
                 <field name="product_category_id" optional="hide"/>
-                <field name="lst_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" />
             </tree>
         </field>
     </record>

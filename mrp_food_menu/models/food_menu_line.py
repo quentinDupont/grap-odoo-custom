@@ -99,7 +99,7 @@ class FoodMenuLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
-        records.mapped("menu_id")._recompute_concatenated_boms()
+        records.mapped("menu_id").compute_concatenated_boms_products()
         return records
 
     def write(self, vals):
@@ -107,13 +107,13 @@ class FoodMenuLine(models.Model):
 
         res = super().write(vals)
 
-        if tracked_fields & vals.keys():
-            self.mapped("menu_id")._recompute_concatenated_boms()
+        if any(field in tracked_fields for field in vals.keys()):
+            self.mapped("menu_id").compute_concatenated_boms_products()
 
         return res
 
     def unlink(self):
         menus = self.mapped("menu_id")
         res = super().unlink()
-        menus._recompute_concatenated_boms()
+        menus.compute_concatenated_boms_products()
         return res

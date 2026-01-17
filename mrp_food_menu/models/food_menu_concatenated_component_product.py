@@ -5,17 +5,19 @@
 from odoo import fields, models
 
 
-# The aim is to sum the quantities of each Finished Products of the Menu
-# So there is just one line per Products / BoM per Food Menu
-class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
-    _name = "mrp.food.menu.concatenated.finished.boms"
-    _description = "Food Menu all Concatenated Finished BoMs"
+# The aim is to sum the quantities of each Component Products of the Menu
+# So there is just one line per Products per Food Menu
+class FoodMenuMrpConcatenatedComponentProduct(models.Model):
+    _name = "mrp.food.menu.concatenated.component.product"
+    _description = "Food Menu all Concatenated Component Products"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _order = "date, product_category_id, product_id"
 
     _sql_constraints = [
         (
-            "uniq_menu_concat_finish_product_bom",
-            "unique(menu_id, product_id, bom_id)",
-            "Duplicate concatenated Finished BoM line",
+            "uniq_menu_concat_component_product",
+            "unique(menu_id, product_id, date)",
+            "Duplicate concatenated Component Menu-Product-Date",
         ),
     ]
 
@@ -28,7 +30,12 @@ class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
         related="menu_id.company_id",
     )
 
-    date = fields.Datetime()
+    date = fields.Date()
+
+    bom_ids = fields.Many2many(
+        string="Used in BoMs",
+        comodel_name="mrp.bom",
+    )
 
     product_id = fields.Many2one(
         comodel_name="product.product",
@@ -56,10 +63,6 @@ class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
         related="product_id.currency_id",
     )
 
-    lst_price = fields.Float(
-        related="product_id.lst_price",
-    )
-
-    bom_id = fields.Many2one(
-        comodel_name="mrp.bom",
+    standard_price = fields.Float(
+        related="product_id.standard_price",
     )
