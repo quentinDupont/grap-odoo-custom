@@ -89,7 +89,9 @@ class FoodMenu(models.Model):
             futur_concat_component = {}
 
             # 1) Line without BoM → directly component (e.g bread)
-            for line in menu.menu_line_ids.filtered(lambda x: not x.bom_id):
+            for line in menu.menu_line_ids.filtered(
+                lambda x: not x.bom_id and not x.display_type
+            ):
                 # Group by Product
                 key = (line.product_id.id, line.date.date() if line.date else False)
 
@@ -99,6 +101,7 @@ class FoodMenu(models.Model):
                         "date": line.date.date() if line.date else False,
                         "product_id": line.product_id.id,
                         "product_uom_qty": 0.0,
+                        "bom_ids": [],
                     }
 
                 # import pdb; pdb.set_trace()
@@ -114,8 +117,10 @@ class FoodMenu(models.Model):
             for concat_finished_bom in concat_finished_boms:
                 for bom_line in concat_finished_bom.mapped(
                     "bom_id.bom_line_ids"
-                ).filtered(lambda x: x.product_id.bom_count == 0):
-                    # Group by Product
+                ).filtered(
+                    lambda x: x.product_id.bom_count == 0 and not x.display_type
+                ):
+                    # Group by Product and Date (if exist)
                     key = (
                         bom_line.product_id.id,
                         concat_finished_bom.date.date()
@@ -131,7 +136,7 @@ class FoodMenu(models.Model):
                             else False,
                             "product_id": bom_line.product_id.id,
                             "product_uom_qty": 0.0,
-                            "bom_ids": [Command.link(bom_line.bom_id.id)],
+                            "bom_ids": [],
                         }
 
                     # import pdb; pdb.set_trace()
@@ -142,6 +147,9 @@ class FoodMenu(models.Model):
                         / bom_line.bom_id.product_qty
                         * bom_line.bom_id.product_uom_id.factor
                     )
+                    futur_concat_component[key]["bom_ids"] += [
+                        Command.link(bom_line.bom_id.id)
+                    ]
 
             # 3) Product lines of intermediate BoMs
             concat_inter_boms = Concat_inter_bom.search(
@@ -151,7 +159,9 @@ class FoodMenu(models.Model):
             )
             print("============ 3) Produits des FT intermediate")
             for concat_inter_bom in concat_inter_boms:
-                for bom_line in concat_inter_bom.mapped("bom_id.bom_line_ids"):
+                for bom_line in concat_inter_bom.mapped("bom_id.bom_line_ids").filtered(
+                    lambda x: not x.display_type
+                ):
                     # Group by Product
                     key = (
                         bom_line.product_id.id,
@@ -168,7 +178,7 @@ class FoodMenu(models.Model):
                             else False,
                             "product_id": bom_line.product_id.id,
                             "product_uom_qty": 0.0,
-                            "bom_ids": [Command.link(bom_line.bom_id.id)],
+                            "bom_ids": [],
                         }
 
                     # import pdb; pdb.set_trace()
@@ -179,6 +189,9 @@ class FoodMenu(models.Model):
                         / bom_line.bom_id.product_qty
                         * bom_line.bom_id.product_uom_id.factor
                     )
+                    futur_concat_component[key]["bom_ids"] += [
+                        Command.link(bom_line.bom_id.id)
+                    ]
 
         for vals in futur_concat_component.values():
             Concat_component_prod.create(vals)

@@ -2,7 +2,7 @@
 # @author: Quentin DUPONT (quentin.dupont@grap.coop)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 # The aim is to sum the quantities of each Component Products of the Menu
@@ -43,7 +43,7 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
 
     product_uom_qty = fields.Float(
         string="Quantity",
-        digits="Product Unit of Measure",
+        digits="Product Quantity",
         required=True,
     )
 
@@ -51,6 +51,18 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
         comodel_name="uom.uom",
         string="Unit of Measure",
         related="product_id.uom_id",
+    )
+
+    product_uom_po_qty = fields.Float(
+        string="Quantity",
+        digits="Product Quantity with Purchase Unit of Measure",
+        compute="_compute_product_po_uom_qty",
+    )
+
+    product_uom_po_id = fields.Many2one(
+        comodel_name="uom.uom",
+        string="Purchase Unit of Measure",
+        related="product_id.uom_po_id",
     )
 
     product_category_id = fields.Many2one(
@@ -66,3 +78,12 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     standard_price = fields.Float(
         related="product_id.standard_price",
     )
+
+    @api.depends("product_id", "product_uom_qty", "product_uom_id", "product_uom_po_id")
+    def _compute_product_po_uom_qty(self):
+        for concat_product in self:
+            concat_product.product_uom_po_qty = (
+                concat_product.product_uom_qty
+                * concat_product.product_uom_po_id.factor
+                / concat_product.product_uom_id.factor
+            )

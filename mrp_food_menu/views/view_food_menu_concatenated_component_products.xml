@@ -17,8 +17,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="date"/>
                 <field name="product_category_id" optional="show"/>
                 <field name="product_id"/>
-                <field name="product_uom_qty"/>
-                <field name="product_uom_id" groups="uom.group_uom" />
+                <field name="product_uom_qty" optional="hide"/>
+                <field name="product_uom_id" groups="uom.group_uom" optional="hide"/>
+                <field name="product_uom_po_qty"/>
+                <field name="product_uom_po_id" groups="uom.group_uom"/>
                 <field name="standard_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" />
                 <field name="bom_ids" optional="show" widget="many2many_tags" />
                 <field name="currency_id" invisible="1" />
@@ -36,7 +38,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <group col="12">
                         <field name="company_id" invisible="1" />
                         <field name="menu_id" optional="hide"/>
-                        <field name="id" optional="hide"/>
                         <field name="date"/>
                         <field name="product_category_id" optional="show"/>
                         <field name="product_id"/>
@@ -53,6 +54,19 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
+        </field>
+    </record>
+
+    <!-- SEARCH -->
+    <record id="view_food_menu_concatenated_component_products_search" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.component.product</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="product_category_id"/>
+                <field name="menu_id"/>
+                <field name="bom_ids"/>
+            </search>
         </field>
     </record>
 
