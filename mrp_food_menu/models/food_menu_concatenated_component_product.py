@@ -11,7 +11,7 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     _name = "mrp.food.menu.concatenated.component.product"
     _description = "Food Menu all Concatenated Component Products"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "date, product_category_id, product_id"
+    _order = "date, product_category_id, product_name"
 
     _sql_constraints = [
         (
@@ -41,6 +41,12 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
         comodel_name="product.product",
     )
 
+    product_name = fields.Char(
+        related="product_id.display_name",
+        string="Product",
+        store=True,
+    )
+
     product_uom_qty = fields.Float(
         string="Quantity",
         digits="Product Quantity",
@@ -68,6 +74,13 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     product_category_id = fields.Many2one(
         comodel_name="product.category",
         related="product_id.categ_id",
+        store=True,
+    )
+
+    product_category_name = fields.Char(
+        related="product_category_id.complete_name",
+        string="Product Category",
+        store=True,
     )
 
     currency_id = fields.Many2one(
@@ -82,8 +95,11 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     @api.depends("product_id", "product_uom_qty", "product_uom_id", "product_uom_po_id")
     def _compute_product_po_uom_qty(self):
         for concat_product in self:
+            factor = (
+                concat_product.product_uom_po_id.factor / concat_product.product_uom_id.factor
+                if concat_product.product_uom_id.factor != 0
+                else 1
+            )
             concat_product.product_uom_po_qty = (
-                concat_product.product_uom_qty
-                * concat_product.product_uom_po_id.factor
-                / concat_product.product_uom_id.factor
+                concat_product.product_uom_qty * factor
             )
