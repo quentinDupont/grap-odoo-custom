@@ -15,6 +15,17 @@ class FoodMenu(models.Model):
         required=True,
     )
 
+    _STATE_SELECTION = [
+        ("modifiable", "Modifiable menu"),
+        ("blocked", "Ready to receive component products"),
+    ]
+
+    state = fields.Selection(
+        selection=_STATE_SELECTION,
+        default="modifiable",
+        readonly=True,
+    )
+
     description = fields.Char(help="Field for external use, for example for PDF.")
 
     internal_notes = fields.Char(help="Field for internal use only.")
@@ -79,6 +90,9 @@ class FoodMenu(models.Model):
     # On regroupe pas par Produit car on veut aussi l'info de la date où le produit est nécessaire
     def _compute_concatenated_component_products(self):
         Concat_component_prod = self.env["mrp.food.menu.concatenated.component.product"]
+        Concat_component_prod_details = self.env[
+            "mrp.food.menu.concatenated.component.product.detail"
+        ]
         Concat_inter_bom = self.env["mrp.food.menu.concatenated.intermediate.boms"]
         Concat_finished_bom = self.env["mrp.food.menu.concatenated.finished.boms"]
 
@@ -102,6 +116,7 @@ class FoodMenu(models.Model):
                         "product_id": line.product_id.id,
                         "product_uom_qty": 0.0,
                         "bom_ids": [],
+                        "concatenated_details": [],
                     }
 
                 # import pdb; pdb.set_trace()
@@ -128,6 +143,15 @@ class FoodMenu(models.Model):
                         else False,
                     )
 
+                    new_qty = (
+                        concat_finished_bom.product_uom_qty
+                        * bom_line.product_qty
+                        / bom_line.bom_id.product_qty
+                        * bom_line.bom_id.product_uom_id.factor
+                    )
+                    detail = Concat_component_prod_details.create(
+                        {"bom_id": bom_line.bom_id.id, "quantity": new_qty}
+                    )
                     if key not in futur_concat_component:
                         futur_concat_component[key] = {
                             "menu_id": menu.id,
@@ -137,18 +161,17 @@ class FoodMenu(models.Model):
                             "product_id": bom_line.product_id.id,
                             "product_uom_qty": 0.0,
                             "bom_ids": [],
+                            "concatenated_details": [],
                         }
 
                     # import pdb; pdb.set_trace()
                     # Quantité de recette de lignes concaténées * la quantité du produit dans la recette (divisée par les unités de la recette)
-                    futur_concat_component[key]["product_uom_qty"] += (
-                        concat_finished_bom.product_uom_qty
-                        * bom_line.product_qty
-                        / bom_line.bom_id.product_qty
-                        * bom_line.bom_id.product_uom_id.factor
-                    )
+                    futur_concat_component[key]["product_uom_qty"] += new_qty
                     futur_concat_component[key]["bom_ids"] += [
                         Command.link(bom_line.bom_id.id)
+                    ]
+                    futur_concat_component[key]["concatenated_details"] += [
+                        Command.link(detail.id)
                     ]
 
             # 3) Product lines of intermediate BoMs
@@ -170,6 +193,16 @@ class FoodMenu(models.Model):
                         else False,
                     )
 
+                    new_qty = (
+                        concat_inter_bom.product_uom_qty
+                        * bom_line.product_qty
+                        / bom_line.bom_id.product_qty
+                        * bom_line.bom_id.product_uom_id.factor
+                    )
+                    detail = Concat_component_prod_details.create(
+                        {"bom_id": bom_line.bom_id.id, "quantity": new_qty}
+                    )
+
                     if key not in futur_concat_component:
                         futur_concat_component[key] = {
                             "menu_id": menu.id,
@@ -179,18 +212,17 @@ class FoodMenu(models.Model):
                             "product_id": bom_line.product_id.id,
                             "product_uom_qty": 0.0,
                             "bom_ids": [],
+                            "concatenated_details": [],
                         }
 
                     # import pdb; pdb.set_trace()
                     # Quantité de recette de lignes concaténées * la quantité du produit dans la recette (divisée par les unités de la recette)
-                    futur_concat_component[key]["product_uom_qty"] += (
-                        concat_inter_bom.product_uom_qty
-                        * bom_line.product_qty
-                        / bom_line.bom_id.product_qty
-                        * bom_line.bom_id.product_uom_id.factor
-                    )
+                    futur_concat_component[key]["product_uom_qty"] += new_qty
                     futur_concat_component[key]["bom_ids"] += [
                         Command.link(bom_line.bom_id.id)
+                    ]
+                    futur_concat_component[key]["concatenated_details"] += [
+                        Command.link(detail.id)
                     ]
 
         for vals in futur_concat_component.values():
@@ -283,6 +315,15 @@ class FoodMenu(models.Model):
 
             # Launch component products computation
             menu._compute_concatenated_component_products()
+
+    def change_state(self):
+        for menu in self:
+            if menu.state == "modifiable":
+                menu.state = "blocked"
+            elif menu.state == "blocked":
+                menu.state = "modifiable"
+            else:
+                menu.state = "modifiable"
 
     # Default methods
     @api.model

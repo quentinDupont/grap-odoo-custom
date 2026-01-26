@@ -26,6 +26,10 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
         required=True,
     )
 
+    menu_state = fields.Selection(
+        related="menu_id.state",
+    )
+
     company_id = fields.Many2one(
         related="menu_id.company_id",
     )
@@ -37,13 +41,19 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
         comodel_name="mrp.bom",
     )
 
+    concatenated_details = fields.One2many(
+        comodel_name="mrp.food.menu.concatenated.component.product.detail",
+        inverse_name="concat_component_product",
+        string="Detail per BoMs",
+    )
+
     product_id = fields.Many2one(
         comodel_name="product.product",
     )
 
     product_name = fields.Char(
         related="product_id.display_name",
-        string="Product",
+        string="Product Name",
         store=True,
     )
 
@@ -60,7 +70,7 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     )
 
     product_uom_po_qty = fields.Float(
-        string="Quantity",
+        string="Quantity with Purchase UoM",
         digits="Product Quantity with Purchase Unit of Measure",
         compute="_compute_product_po_uom_qty",
     )
@@ -79,8 +89,13 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
 
     product_category_name = fields.Char(
         related="product_category_id.complete_name",
-        string="Product Category",
+        string="Product Category Name",
         store=True,
+    )
+
+    product_tag_ids = fields.Many2many(
+        comodel_name="product.tag",
+        related="product_id.product_tag_ids",
     )
 
     currency_id = fields.Many2one(
@@ -92,14 +107,15 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
         related="product_id.standard_price",
     )
 
+    received = fields.Boolean()
+
     @api.depends("product_id", "product_uom_qty", "product_uom_id", "product_uom_po_id")
     def _compute_product_po_uom_qty(self):
         for concat_product in self:
             factor = (
-                concat_product.product_uom_po_id.factor / concat_product.product_uom_id.factor
+                concat_product.product_uom_po_id.factor
+                / concat_product.product_uom_id.factor
                 if concat_product.product_uom_id.factor != 0
                 else 1
             )
-            concat_product.product_uom_po_qty = (
-                concat_product.product_uom_qty * factor
-            )
+            concat_product.product_uom_po_qty = concat_product.product_uom_qty * factor
