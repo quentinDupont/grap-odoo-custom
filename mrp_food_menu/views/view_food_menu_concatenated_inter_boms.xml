@@ -9,7 +9,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="view_food_menu_concatenated_intermediate_boms" model="ir.ui.view">
         <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="0" import="0">
                 <field name="company_id" invisible="1" />
                 <field name="menu_id" optional="hide"/>
                 <field name="id" optional="hide"/>

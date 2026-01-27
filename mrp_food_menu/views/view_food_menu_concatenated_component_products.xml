@@ -10,7 +10,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="view_food_menu_concatenated_component_products" model="ir.ui.view">
         <field name="model">mrp.food.menu.concatenated.component.product</field>
         <field name="arch" type="xml">
-            <tree limit="1000">
+            <tree limit="1000" create="0" import="0">
                 <field name="company_id" invisible="1" />
                 <field name="menu_id" optional="hide"/>
                 <field name="menu_state" optional="hide"/>

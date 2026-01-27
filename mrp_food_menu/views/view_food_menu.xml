@@ -97,7 +97,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                             </div>
                         </button>
                     </div>
-                    <div class="alert alert-warning col-4" role="status" attrs="{'invisible': [('state', '=', 'modifiable')]}">
+                    <div class="alert alert-warning col-6" role="status" attrs="{'invisible': [('state', '=', 'modifiable')]}">
                       📌 You can't modify this menu.
                          Click on Component Products to mark them as received or not.
                     </div>
@@ -108,6 +108,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <group class="menu_fields">
                         <field name="description" placeholder="Quick and nurrishing vegan meal"/>
                         <field name="internal_notes" placeholder="Replace flour by rice  flour for a gluten-free option."/>
+                        <field name="company_id" groups="base.group_multi_company"/>
                     </group>
                     <br/>
                     <group col="12">
@@ -191,7 +192,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
     <menuitem id="menu_food_menu"
-        parent="mrp.menu_mrp_root" sequence="40"
+        parent="mrp.menu_mrp_root" sequence="5"
         action="action_mrp_food_menu"/>
 
 
