@@ -119,7 +119,6 @@ class FoodMenu(models.Model):
                         "concatenated_details": [],
                     }
 
-                # import pdb; pdb.set_trace()
                 futur_concat_component[key]["product_uom_qty"] += line.product_uom_qty
 
             # 2) Product lines of finished BoMs without lines of intermediate product

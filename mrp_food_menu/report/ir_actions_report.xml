@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2026 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="food_menu_concatenated_component_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.component.product</field>
+        <field name="name">Purchase list</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_concatenated_component</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_component_product" />
+        <field name="binding_type">report</field>
+
+    </record>
+
+</odoo>

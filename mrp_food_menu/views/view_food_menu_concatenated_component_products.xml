@@ -10,6 +10,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="view_food_menu_concatenated_component_products" model="ir.ui.view">
         <field name="model">mrp.food.menu.concatenated.component.product</field>
         <field name="arch" type="xml">
+            <header>
+                <button name="%(food_menu_concatenated_component_report)d" string="Print Purchase List with selected lines" type="action"/>
+            </header>
             <tree limit="1000" create="0" import="0">
                 <field name="company_id" invisible="1" />
                 <field name="menu_id" optional="hide"/>
@@ -22,7 +25,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="product_uom_id" groups="uom.group_uom" optional="hide"/>
                 <field name="product_uom_po_qty"/>
                 <field name="product_uom_po_id" groups="uom.group_uom"/>
-                <field name="standard_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Cost"/>
+                <field name="standard_price" optional="hide" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="subtotal_standard_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Cost"/>
                 <field name="product_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="bom_ids" optional="show" widget="many2many_tags"/>
                 <field name="received" widget="boolean_toggle" attrs="{'readonly': [('menu_state', '=', 'modifiable')]}"/>
@@ -43,38 +47,21 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <h1>
                             <field name="product_name" nolabel="1" readonly="1" class="me-2"/>
                         </h1>
-                        <field name="product_id" readonly="1" nolabel="1"/>
-                        <span class="me-2">Category:</span>
-                        <field name="product_category_id" readonly="1" nolabel="1"/>
-                        <field name="product_tag_ids" widget="many2many_tags"/>
-                        <br/>
-
-                        <t t-if="date">
-                            <span class="me-2">For the date</span>
-                            <field name="date" readonly="1" nolabel="1"/>
-                            <br/>
-                        </t>
-
-                        <span class="me-2">Received ?</span>
-                        <b>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1"/>
+                            <field name="product_category_id" readonly="1"/>
+                            <field name="product_tag_ids" widget="many2many_tags"/>
+                            <field name="date" readonly="1"/>
                             <field name="menu_state" invisible="1"/>
                             <field name="received" widget="boolean_toggle" attrs="{'readonly': [('menu_state', '=', 'modifiable')]}"/>
-                        </b>
-                        <br/>
-
-                        <span class="me-2">You will need</span>
-                        <b>
-                            <field name="product_uom_qty" readonly="1" nolabel="1"/>
-                            <field name="product_uom_id" groups="uom.group_uom" readonly="1" nolabel="1"/>
-                        </b>
-                        <br/>
-
-                        <span class="me-2">It will cost</span>
-                        <b>
-                            <field name="currency_id" invisible="1" />
-                            <field name="standard_price" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" readonly="1" class="me-2"/>
-                        </b>
-                    </div>
+                            <field name="product_uom_po_qty" readonly="1"/>
+                            <field name="product_uom_po_id" groups="uom.group_uom" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" readonly="1"/>
+                        </group>
+                    </group>
 
                     <group name="details">
                         <group>
@@ -82,7 +69,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <tree>
                                     <field name="bom_id"/>
                                     <field name="quantity" nolabel="1"/>
-                                    <field name="product_uom_po_id" nolabel="1"/>
+                                    <field name="product_uom_po_id"/>
                                 </tree>
                             </field>
                         </group>

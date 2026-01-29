@@ -11,7 +11,7 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     _name = "mrp.food.menu.concatenated.component.product"
     _description = "Food Menu all Concatenated Component Products"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "date, product_category_id, product_name"
+    _order = "product_category_name, product_name"
 
     _sql_constraints = [
         (
@@ -71,8 +71,8 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
 
     product_uom_po_qty = fields.Float(
         string="Quantity with Purchase UoM",
-        digits="Product Quantity with Purchase Unit of Measure",
         compute="_compute_product_po_uom_qty",
+        digits="Product Quantity",
     )
 
     product_uom_po_id = fields.Many2one(
@@ -104,7 +104,15 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
     )
 
     standard_price = fields.Float(
+        string="Unit Standard Price",
         related="product_id.standard_price",
+        digits="Product Unit of Measure",
+    )
+
+    subtotal_standard_price = fields.Float(
+        string="Subtotal",
+        compute="_compute_subtotal_standard_price",
+        digits="Product Unit of Measure",
     )
 
     received = fields.Boolean()
@@ -119,3 +127,16 @@ class FoodMenuMrpConcatenatedComponentProduct(models.Model):
                 else 1
             )
             concat_product.product_uom_po_qty = concat_product.product_uom_qty * factor
+
+    @api.depends("product_id", "product_uom_qty", "standard_price")
+    def _compute_subtotal_standard_price(self):
+        for concat_product in self:
+            concat_product.subtotal_standard_price = (
+                concat_product.product_uom_qty * concat_product.standard_price
+            )
+
+    def print_pdf_report(self):
+        self.ensure_one()
+        return self.env.ref(
+            "mrp_food_menu.food_menu_concatenated_component_report"
+        ).report_action(self)

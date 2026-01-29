@@ -22,10 +22,18 @@
     "data": [
         "security/ir_rule.xml",
         "security/ir.model.access.csv",
+        "data/report_paperformat.xml",
+        "report/report_concatenated_component.xml",
+        "report/ir_actions_report.xml",
         "views/view_food_menu.xml",
         "views/view_food_menu_concatenated_component_products.xml",
         "views/view_food_menu_concatenated_inter_boms.xml",
         "views/view_food_menu_concatenated_finished_boms.xml",
     ],
+    "assets": {
+        "web.report_assets_common": [
+            "mrp_food_menu/static/src/scss/mrp_food_menu_report.scss",
+        ],
+    },
     "installable": True,
 }
