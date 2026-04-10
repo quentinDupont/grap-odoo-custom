@@ -16,30 +16,30 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
               <br/>
               <table class="table table-sm table-bordered">
                   <thead>
-                      <tr class="products_to_produce_thead th-colored">
-                          <th name="th_products_to_produce_product" class="text-left">Bill of Material</th>
-                          <th name="th_products_to_produce_qty" class="text-center width-qty-and-unit">Quantity</th>
-                          <th name="th_products_to_produce_uom" class="text-left width-qty-and-unit">UoM</th>
-                          <t t-if="option_display_cost">
-                            <th name="th_products_to_produce_standard_price_unit" class="text-center width-fixed-small">Price Unit</th>
-                            <th name="th_products_to_produce_subtotal" class="text-center width-fixed-small">Subtotal</th>
-                          </t>
-                          <th name="th_products_to_produce_free_comment" class="text-center width-fixed-large">Free comment</th>
+                      <tr class="intermediate_product_thead th-colored">
+                          <th name="th_intermediate_product_product" class="text-left">Bill of Material</th>
+                          <th name="th_intermediate_product_qty" class="text-center width-qty-and-unit">Quantity</th>
+                          <th name="th_intermediate_product_uom" class="text-left width-qty-and-unit">UoM</th>
+                          <th name="th_intermediate_product_for" class="text-center width-fixed-small">For</th>
+                          <th name="th_intermediate_product_free_comment" class="text-center width-fixed-large">Free comment</th>
                       </tr>
                   </thead>
-                  <tbody class="products_to_produce_tbody">
+                  <tbody class="intermediate_product_tbody">
                       <t t-foreach="docs" t-as="intermediate_product">
                           <tr>
-                            <td name="td_products_to_produce_product" class="text-left">
-                              <span t-esc="intermediate_product.product_id.name"/><span class="smaller-font-size"> (for <span t-esc="intermediate_product.bom_id.product_tmpl_id.name"/>)</span>
+                            <td name="td_intermediate_product_product" class="text-left">
+                              <span t-esc="intermediate_product.product_id.name"/>
                             </td>
-                            <td name="td_products_to_produce_qty" class="text-center width-qty-and-unit">
+                            <td name="td_intermediate_product_qty" class="text-center width-qty-and-unit">
                               <span t-esc="intermediate_product.product_uom_qty"/>
                             </td>
-                            <td name="td_products_to_produce_uom" class="text-left width-qty-and-unit">
+                            <td name="td_intermediate_product_uom" class="text-left width-qty-and-unit">
                               <span t-esc="intermediate_product.product_uom_id.name"/>
                             </td>
-                            <td name="td_products_to_produce_free_comment" class="width-fixed-large"></td>
+                            <td name="td_intermediate_product_for" class="text-center">
+                              <span t-esc="intermediate_product.finished_product_and_qty"/>
+                            </td>
+                            <td name="td_intermediate_product_free_comment" class="width-fixed-large"></td>
                           </tr>
                       </t>
                   </tbody>

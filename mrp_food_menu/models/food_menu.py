@@ -279,13 +279,8 @@ class FoodMenu(models.Model):
                         concat_finished_bom.bom_id.product_tmpl_id.name
                         + " x"
                         + str(produce_qty)
-                        + ", "
+                        + " "
                     )
-
-            # remove last ', '
-            futur_concat_inter[key]["finished_product_and_qty"] = futur_concat_inter[
-                key
-            ]["finished_product_and_qty"][:-2]
 
             for vals in futur_concat_inter.values():
                 Concat_inter_bom.create(vals)
