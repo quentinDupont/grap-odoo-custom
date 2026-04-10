@@ -20,6 +20,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="product_uom_id" groups="uom.group_uom" />
                 <field name="currency_id" invisible="1" />
                 <field name="product_category_id" optional="hide"/>
+                <field name="finished_product_and_qty" optional="show"/>
             </tree>
         </field>
     </record>

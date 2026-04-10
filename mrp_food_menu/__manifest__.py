@@ -24,6 +24,7 @@
         "security/ir.model.access.csv",
         "data/report_paperformat.xml",
         "report/report_concatenated_component.xml",
+        "report/report_intermediate_product.xml",
         "report/ir_actions_report.xml",
         "views/view_food_menu.xml",
         "views/view_food_menu_concatenated_component_products.xml",

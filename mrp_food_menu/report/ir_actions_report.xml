@@ -6,6 +6,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
 
+    <!-- COMPONENT -->
     <record id="food_menu_concatenated_component_report" model="ir.actions.report">
         <field name="model">mrp.food.menu.concatenated.component.product</field>
         <field name="name">Purchase list</field>
@@ -15,7 +16,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
         <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_component_product" />
         <field name="binding_type">report</field>
+    </record>
 
+    <!-- INTERMEDIATE -->
+    <record id="food_menu_intermediate_product_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
+        <field name="name">Intermediate Product to Produce</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_intermediate_product</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_intermediate_boms" />
+        <field name="binding_type">report</field>
     </record>
 
 </odoo>

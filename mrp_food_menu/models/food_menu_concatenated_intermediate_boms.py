@@ -59,3 +59,6 @@ class FoodMenuMrpConcatenatedIntermediateBoms(models.Model):
     bom_id = fields.Many2one(
         comodel_name="mrp.bom",
     )
+
+    # Text to describe origin of inter product
+    finished_product_and_qty = fields.Char()

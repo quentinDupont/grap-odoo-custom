@@ -2,7 +2,7 @@
 # @author: Quentin DUPONT (quentin.dupont@grap.coop)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import Command, api, fields, models
+from odoo import Command, _, api, fields, models
 
 
 class FoodMenu(models.Model):
@@ -252,8 +252,15 @@ class FoodMenu(models.Model):
                 for bom_line in concat_finished_bom.bom_id.bom_line_ids.filtered(
                     lambda x: x.product_id.bom_count > 0
                 ):
-                    # Group by BoM
-                    key = bom_line.bom_id.id
+                    # Group by Menu, Product, BoM
+                    key = (
+                        menu.id,
+                        bom_line.product_id.id,
+                        bom_line.product_id.bom_ids[0].id,
+                    )
+                    produce_qty = (
+                        bom_line.product_qty * concat_finished_bom.product_uom_qty
+                    )
 
                     if key not in futur_concat_inter:
                         futur_concat_inter[key] = {
@@ -264,11 +271,21 @@ class FoodMenu(models.Model):
                                 0
                             ].id,  # Limitation : arbitraly we choose 1st BoM
                             "product_uom_qty": 0.0,
+                            "finished_product_and_qty": _("for "),
                         }
 
-                    futur_concat_inter[key]["product_uom_qty"] += (
-                        bom_line.product_qty * concat_finished_bom.product_uom_qty
+                    futur_concat_inter[key]["product_uom_qty"] += produce_qty
+                    futur_concat_inter[key]["finished_product_and_qty"] += (
+                        concat_finished_bom.bom_id.product_tmpl_id.name
+                        + " x"
+                        + str(produce_qty)
+                        + ", "
                     )
+
+            # remove last ', '
+            futur_concat_inter[key]["finished_product_and_qty"] = futur_concat_inter[
+                key
+            ]["finished_product_and_qty"][:-2]
 
             for vals in futur_concat_inter.values():
                 Concat_inter_bom.create(vals)
