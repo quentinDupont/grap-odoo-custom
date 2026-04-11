@@ -2,7 +2,7 @@
 # @author: Quentin DUPONT (quentin.dupont@grap.coop)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 # The aim is to sum the quantities of each Finished Products of the Menu
@@ -63,3 +63,12 @@ class FoodMenuMrpConcatenatedFinishedBoms(models.Model):
     bom_id = fields.Many2one(
         comodel_name="mrp.bom",
     )
+
+    subtotal = fields.Float(
+        compute="_compute_subtotal",
+    )
+
+    @api.depends("product_uom_qty", "lst_price")
+    def _compute_subtotal(self):
+        for line in self:
+            line.subtotal = line.product_uom_qty * line.lst_price

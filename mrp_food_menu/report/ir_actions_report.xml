@@ -30,4 +30,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="binding_type">report</field>
     </record>
 
+    <!-- FINISHED -->
+    <record id="food_menu_finished_boms_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.finished.boms</field>
+        <field name="name">Finished BoMs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_concat_finished_boms</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms" />
+        <field name="binding_type">report</field>
+    </record>
+
 </odoo>
