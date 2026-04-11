@@ -6,6 +6,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 <odoo>
 
+    <!-- ======= Intermediate products to produce =======  -->
     <template id="report_intermediate_product">
         <t t-call="web.basic_layout">
             <div class="page_intermediate_to_prepare small-font-size">
@@ -46,6 +47,23 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
               </table>
             </div>
         </t>
+    </template>
+
+    <!-- Use mrp_bom_simple_report -->
+    <!-- ======= BOMS SIMPLE REPORT =======  -->
+    <template id="report_intermediate_product_bom">
+        <t t-foreach="docs" t-as="concat_intermediate_product">
+          <t t-call="mrp_bom_simple_report.bom_simple_report_xml">
+            <t t-set="docs" t-value="concat_intermediate_product.bom_id"/>
+            <t t-set="bom_qty" t-value="concat_intermediate_product.product_uom_qty"/>
+          </t>
+        </t>
+    </template>
+
+    <!-- ======= ALL =======  -->
+    <template id="report_intermediate_product_all">
+        <t t-call="mrp_food_menu.report_intermediate_product"/>
+        <t t-call="mrp_food_menu.report_intermediate_product_bom"/>
     </template>
 
 </odoo>

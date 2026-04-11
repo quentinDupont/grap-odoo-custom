@@ -21,7 +21,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <!-- INTERMEDIATE -->
     <record id="food_menu_intermediate_product_report" model="ir.actions.report">
         <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
-        <field name="name">Intermediate Product to Produce</field>
+        <field name="name">Print Summary Intermediate Product to Produce</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">mrp_food_menu.report_intermediate_product</field>
         <field name="attachment_use">False</field>
@@ -30,12 +30,56 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="binding_type">report</field>
     </record>
 
+    <record id="food_menu_intermediate_product_bom_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
+        <field name="name">Print all intermediate BoMs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_intermediate_product_bom</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_intermediate_boms" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="food_menu_intermediate_product_all_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.intermediate.boms</field>
+        <field name="name">Print Summary + BoMs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_intermediate_product_all</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_intermediate_boms" />
+        <field name="binding_type">report</field>
+    </record>
+
     <!-- FINISHED -->
-    <record id="food_menu_finished_boms_report" model="ir.actions.report">
+    <record id="food_menu_finished_boms_summary_report" model="ir.actions.report">
         <field name="model">mrp.food.menu.concatenated.finished.boms</field>
-        <field name="name">Finished BoMs</field>
+        <field name="name">Print Summary quantities to prepare</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">mrp_food_menu.report_concat_finished_boms</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="food_menu_finished_boms_bom_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.finished.boms</field>
+        <field name="name">Print all finished BoMs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_concat_finished_boms_bom</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
+        <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="food_menu_finished_boms_all_report" model="ir.actions.report">
+        <field name="model">mrp.food.menu.concatenated.finished.boms</field>
+        <field name="name">Print Summary + BoMs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mrp_food_menu.report_concat_finished_boms_all</field>
         <field name="attachment_use">False</field>
         <field name="paperformat_id" ref="paper_format_mrp_food_menu_report"/>
         <field name="binding_model_id" ref="mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms" />
