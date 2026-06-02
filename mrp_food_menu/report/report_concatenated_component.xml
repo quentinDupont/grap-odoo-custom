@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2026 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <template id="report_concatenated_component">
+        <t t-call="web.basic_layout">
+            <div class="page_components_requirements small-font-size">
+            <div class="page_header">
+                <h2 class="text-left title-h2">Components requirements</h2>
+                <span t-esc="notes_for_pdf"/>
+            </div>
+            <br/>
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr class="to_purchase_thead th-colored">
+                    <th name="th_to_purchase_product" class="text-left">Product</th>
+                    <th name="th_to_purchase_qty" class="text-center width-qty-and-unit">Quantity</th>
+                    <th name="th_to_purchase_uom" class="text-left width-qty-and-unit">UoM</th>
+                    <th name="th_to_purchase_standard_price_unit" class="text-center width-fixed-small">Price Unit</th>
+                    <th name="th_to_purchase_subtotal" class="text-center width-fixed-small">Subtotal</th>
+                    <th name="th_to_purchase_free_comment" class="text-center width-fixed-small">Free comment</th>
+                    </tr>
+                  </thead>
+                  <tbody class="purchase_list_tbody">
+                      <!-- Initialize category -->
+                      <t t-set="categ_tmp" t-value="" />
+                      <t t-set="purchase_total_cost" t-value="0" />
+                      <t t-foreach="docs" t-as="component_line">
+                          <!-- PRINT A NEW CATEGORY -->
+                          <!-- New category: print this category -->
+                          <!-- Nota bene : this algorithm works because the lines are classified by categories upstream -->
+                          <t t-if="component_line.product_category_id != categ_tmp">
+                            <tr class="purchase_list_new_category">
+                              <td name="new_category" class="text-left" colspan="6">
+                                <b><span t-esc="component_line.product_category_name"/></b>
+                              </td>
+                            </tr>
+                          </t>
+                          <!-- PRINT A NEW PRODUCT LINE WITH QUANTITY -->
+                          <tr>
+                            <!-- component_line[0] is the product category -->
+                            <td name="td_to_purchase_product" class="text-left">
+                                <span t-esc="component_line.product_name"/>
+                            </td>
+                            <td name="td_to_purchase_qty" class="text-center width-qty-and-unit">
+                              <span t-esc="component_line.product_uom_po_qty" t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td name="td_to_purchase_uom" class="text-left width-qty-and-unit">
+                              <span t-esc="component_line.product_uom_po_id.name"/>
+                            </td>
+                            <td name="td_to_purchase_standard_price_unit" class="text-center width-fixed-small">
+                                <span t-esc="component_line.standard_price"/> <span t-esc="component_line.currency_id.symbol"/>
+                            </td>
+                            <td name="td_to_purchase_subtotal" class="text-center width-fixed-small">
+                                <span t-esc="component_line.subtotal_standard_price"/> <span t-esc="component_line.currency_id.symbol"/>
+                            </td>
+                            <td name="td_to_purchase_free_comment width-fixed-large"></td>
+                          </tr>
+                          <!-- We define the new category -->
+                          <t t-set="categ_tmp" t-value="component_line.product_category_id"/>
+                          <!-- We sum subtotal price -->
+                          <t t-set="purchase_total_cost" t-value="purchase_total_cost + component_line.subtotal_standard_price" />
+                      </t>
+                      <tr class="table_footer_total_cost">
+                        <td name="to_purchase_total_cost_name" class="text-right" colspan="4">
+                          <b>Total based on Products cost:</b>
+                        </td>
+                        <td name="to_purchase_total_cost" class="text-center" colspan="1">
+                          <b><span t-esc="purchase_total_cost" t-options='{"widget": "float", "precision": 2}'/> <span t-esc="component_line.currency_id.symbol"/></b>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </t>
+    </template>
+
+</odoo>

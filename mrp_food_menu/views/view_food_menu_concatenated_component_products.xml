@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2026 - Today: GRAP (https://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- TREE VIEW  -->
+    <record id="view_food_menu_concatenated_component_products" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.component.product</field>
+        <field name="arch" type="xml">
+            <header>
+                <button name="%(food_menu_concatenated_component_report)d" string="Print Purchase List with selected lines" type="action"/>
+            </header>
+            <tree limit="1000" create="0" import="0">
+                <field name="company_id" invisible="1" />
+                <field name="menu_id" optional="hide"/>
+                <field name="menu_state" optional="hide"/>
+                <field name="id" optional="hide"/>
+                <field name="date"/>
+                <field name="product_category_name" optional="show"/>
+                <field name="product_name"/>
+                <field name="product_uom_qty" optional="hide"  readonly="1"/>
+                <field name="product_uom_id" groups="uom.group_uom" optional="hide"/>
+                <field name="product_uom_po_qty"/>
+                <field name="product_uom_po_id" groups="uom.group_uom"/>
+                <field name="standard_price" optional="hide" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="subtotal_standard_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" sum="Total Cost"/>
+                <field name="product_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="bom_ids" optional="show" widget="many2many_tags"/>
+                <field name="received" widget="boolean_toggle" attrs="{'readonly': [('menu_state', '=', 'modifiable')]}"/>
+                <field name="currency_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM VIEW  -->
+    <record id="view_food_menu_concatenated_component_products_form" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.component.product</field>
+        <field name="name">Concatenated Component Product</field>
+        <field name="arch" type="xml">
+            <form>
+                <header></header>
+                <sheet>
+                    <div class="my-4">
+                        <h1>
+                            <field name="product_name" nolabel="1" readonly="1" class="me-2"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1"/>
+                            <field name="product_category_id" readonly="1"/>
+                            <field name="product_tag_ids" widget="many2many_tags"/>
+                            <field name="date" readonly="1"/>
+                            <field name="menu_state" invisible="1"/>
+                            <field name="received" widget="boolean_toggle" attrs="{'readonly': [('menu_state', '=', 'modifiable')]}"/>
+                            <field name="product_uom_po_qty" readonly="1"/>
+                            <field name="product_uom_po_id" groups="uom.group_uom" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group name="details">
+                        <group>
+                            <field name="concatenated_details" readonly="1">
+                                <tree>
+                                    <field name="bom_id"/>
+                                    <field name="quantity" nolabel="1"/>
+                                    <field name="product_uom_po_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH -->
+    <record id="view_food_menu_concatenated_component_products_search" model="ir.ui.view">
+        <field name="model">mrp.food.menu.concatenated.component.product</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="product_category_id"/>
+                <field name="menu_id"/>
+                <field name="bom_ids"/>
+                <!-- FILTER -->
+                <filter name="filter_received" string="Received" domain="[('received', '=', True)]"/>
+                <filter name="filter_not_received" string="Not received" domain="[('received', '=', False)]"/>
+                <filter name="groupby_product" string="Product" context="{'group_by': 'product_id'}"/>
+                <filter name="groupby_product_categ" string="Product Category" context="{'group_by': 'product_category_id'}"/>
+                <filter name="groupby_date" string="Date" context="{'group_by': 'date'}"/>
+                <filter name="groupby_bom" string="BoM" context="{'group_by': 'bom_ids'}"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

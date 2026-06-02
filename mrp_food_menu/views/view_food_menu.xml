@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2025 - Today: GRAP (http://www.grap.coop)
+@author: Quentin DUPONT (quentin.dupont@grap.coop)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <!-- Action record -->
+    <record id="action_food_menu_to_mrp_bom" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id', 'in', context.get('ctx_mrp_bom_ids',False))]</field>
+    </record>
+
+    <record id="action_food_menu_to_product_product" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id', 'in', context.get('ctx_product_wo_bom_ids',False))]</field>
+    </record>
+
+    <record id="action_food_menu_to_concatenated_component_product" model="ir.actions.act_window">
+        <field name="name">Concatenated Component Products</field>
+        <field name="res_model">mrp.food.menu.concatenated.component.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id', 'in', context.get('ctx_concatenated_component_product_ids',False))]</field>
+    </record>
+
+    <record id="action_food_menu_to_concatenated_inter_bom" model="ir.actions.act_window">
+        <field name="name">Concatenated Inter BoMs</field>
+        <field name="res_model">mrp.food.menu.concatenated.intermediate.boms</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('id', 'in', context.get('ctx_concatenated_intermediate_bom_ids',False))]</field>
+    </record>
+
+    <record id="action_food_menu_to_concatenated_finished_bom" model="ir.actions.act_window">
+        <field name="name">Concatenated Finished BoMs</field>
+        <field name="res_model">mrp.food.menu.concatenated.finished.boms</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('id', 'in', context.get('ctx_concatenated_finished_bom_ids',False))]</field>
+    </record>
+
+    <!-- MRP Food menu Form -->
+    <record id="view_food_menu_form" model="ir.ui.view">
+        <field name="model">mrp.food.menu</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                  <button type="object"
+                        string="Recompute concatenated quantities"
+                        name="compute_concatenated_boms_products"
+                        icon="fa-refresh"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '=', 'blocked')]}"/>
+                  <button type="object"
+                        string="Make the menu modifiable"
+                        name="change_state"
+                        confirm="It will erased informations about received or not products. Are you sure ?"
+                        attrs="{'invisible': [('state', '=', 'modifiable')]}"/>
+                  <button type="object"
+                        string="Block menu to receive products"
+                        name="change_state"
+                        confirm="After that, you can't go back without losing received informations. Are you sure ?"
+                        attrs="{'invisible': [('state', '=', 'blocked')]}"/>
+                  <field name="state" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="product_wo_bom_ids" invisible="1"/>
+                        <field name="mrp_bom_ids" invisible="1"/>
+                        <field name="concatenated_component_products_ids" invisible="1"/>
+                        <field name="concatenated_intermediate_bom_ids" invisible="1"/>
+                        <field name="concatenated_finished_bom_ids" invisible="1"/>
+                        <button class="oe_stat_button" type="action" icon="fa-list"
+                            name="%(action_food_menu_to_mrp_bom)d"
+                            context="{'ctx_mrp_bom_ids': mrp_bom_ids}">
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_text">All BoMs</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="action" icon="fa-warning"
+                            name="%(action_food_menu_to_product_product)d"
+                            context="{'ctx_product_wo_bom_ids': product_wo_bom_ids}"
+                            attrs="{'invisible': [('product_wo_bom_qty', '=', 0)]}">
+                            <div class="o_field_widget o_stat_info">
+                              <span><field name="product_wo_bom_qty" widget="statinfo" nolabel="1"/></span>
+                              <span class="o_stat_text">No BoM</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="action" icon="fa-star-o"
+                            name="%(action_food_menu_to_concatenated_component_product)d"
+                            context="{'ctx_concatenated_component_product_ids': concatenated_component_products_ids}">
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_text">Component Products</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="action" icon="fa-star-half-o"
+                            name="%(action_food_menu_to_concatenated_inter_bom)d"
+                            context="{'ctx_concatenated_intermediate_bom_ids': concatenated_intermediate_bom_ids}">
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_text">Intermediate BoMs</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="action" icon="fa-star"
+                            name="%(action_food_menu_to_concatenated_finished_bom)d"
+                            context="{'ctx_concatenated_finished_bom_ids': concatenated_finished_bom_ids}">
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_text">Finished BoMs</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="alert alert-warning col-6" role="status" attrs="{'invisible': [('state', '=', 'modifiable')]}">
+                      📌 You can't modify this menu.
+                         Click on Component Products to mark them as received or not.
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Menu for New Year Eve"/></h1>
+                    </div>
+                    <group class="menu_fields">
+                        <field name="date"/>
+                        <field name="description" placeholder="Quick and nurrishing vegan meal"/>
+                        <field name="internal_notes" placeholder="Replace flour by rice  flour for a gluten-free option."/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <br/>
+                    <group col="12">
+                        <field colspan="12" name="menu_line_ids"
+                               attrs="{'readonly': [('state', '=', 'blocked')]}"
+                               nolabel="1" widget="section_and_note_one2many">
+                            <tree editable="bottom" limit="200">
+
+                                <control>
+                                    <create name="add_product_control" string="Add a product" />
+                                    <create
+                                            name="add_section_control"
+                                            string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"
+                                        />
+                                    <create
+                                            name="add_note_control"
+                                            string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"
+                                        />
+                                </control>
+                                <field name="display_type" invisible="1"/>
+                                <field name="company_id" invisible="1" />
+                                <field name="sequence" widget="handle" />
+                                <field
+                                        name="product_id"
+                                        attrs="{
+                                      'required': [('display_type', '=', False)],
+                                      'invisible': [('display_type', '=', True)],
+                                    }"
+                                        context="{
+                                      'default_type': 'product',
+                                      'default_detailed_type': 'product'
+                                    }"
+                                    />
+                                <field name="date"/>
+                                <field
+                                        name="name"
+                                        widget="section_and_note_text"
+                                        optional="show"
+                                    />
+                                <field
+                                        name="product_uom_qty"
+                                        attrs="{
+                                          'invisible': [('display_type', '=', True)],
+                                      }"
+                                    />
+                                <field name="product_uom_id" groups="uom.group_uom" />
+                                <field name="currency_id" invisible="1" />
+                                <field name="lst_price" optional="show" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                <field name="bom_id" optional="show"/>
+
+
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- MRP Food menu Tree -->
+    <record id="view_food_menu_tree" model="ir.ui.view">
+        <field name="model">mrp.food.menu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_mrp_food_menu" model="ir.actions.act_window">
+        <field name="name">Food Menus</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.food.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_food_menu"
+        parent="mrp.menu_mrp_root" sequence="5"
+        action="action_mrp_food_menu"/>
+
+
+
+</odoo>

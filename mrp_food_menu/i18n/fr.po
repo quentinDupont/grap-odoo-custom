@@ -1,0 +1,850 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * mrp_food_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-11 20:26+0000\n"
+"PO-Revision-Date: 2026-04-11 20:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+msgid "<b>Total based on Products cost:</b>"
+msgstr "<b>Total basé sur le coût des Produits:</b>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">All BoMs</span>"
+msgstr "<span class=\"o_stat_text\">Recettes</span>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">Component Products</span>"
+msgstr "<span class=\"o_stat_text\">Matières premières</span>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">Finished BoMs</span>"
+msgstr "<span class=\"o_stat_text\">Produits finis</span>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">Intermediate BoMs</span>"
+msgstr "<span class=\"o_stat_text\">Recettes intermédiaires</span>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">No BoM</span>"
+msgstr "<span class=\"o_stat_text\">Produit(s) sans Recette</span>"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_needaction
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_ids
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_exception_decoration
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_state
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_type_icon
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Add a product"
+msgstr "Ajouter un produit"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Add a section"
+msgstr "Ajouter une section"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid ""
+"After that, you can't go back without losing received informations. Are you "
+"sure ?"
+msgstr ""
+"Après ça, vous ne pourrez pas revenir en arrière sans perdre des infos. Sûr·e ?"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_attachment_count
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "Bill of Material"
+msgstr "Recette"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Block menu to receive products"
+msgstr "Bloquer ce menu pour gérer la réception de produits."
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "BoM"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__bom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__bom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__bom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__bom_id
+msgid "Bom"
+msgstr "Recette"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__company_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__company_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__company_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__company_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+msgid "Components requirements"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__concat_component_product
+msgid "Concat Component Product"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.actions.act_window,name:mrp_food_menu.action_food_menu_to_concatenated_component_product
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__concatenated_component_products_ids
+msgid "Concatenated Component Products"
+msgstr "Matières premières concaténées"
+
+#. module: mrp_food_menu
+#: model:ir.actions.act_window,name:mrp_food_menu.action_food_menu_to_concatenated_finished_bom
+msgid "Concatenated Finished BoMs"
+msgstr "Produits finis concaténés"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__concatenated_finished_bom_ids
+msgid "Concatenated Finished Bom"
+msgstr "Produits finis concaténés"
+
+#. module: mrp_food_menu
+#: model:ir.actions.act_window,name:mrp_food_menu.action_food_menu_to_concatenated_inter_bom
+msgid "Concatenated Inter BoMs"
+msgstr "Produits intermédiaires concaténés"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__concatenated_intermediate_bom_ids
+msgid "Concatenated Intermediate Bom"
+msgstr "Produits intermédiaires concaténés"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__create_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__create_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__create_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__create_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__create_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__create_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__create_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__create_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__create_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__create_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__currency_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__currency_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__currency_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__date
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "Date"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_id
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__product_uom_po_id
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__product_uom_id
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__product_uom_id
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_line__product_uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_po_id
+msgid ""
+"Default unit of measure used for purchase orders. It must be in the same "
+"category as the default unit of measure."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__description
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__name
+msgid "Description"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__concatenated_details
+msgid "Detail per BoMs"
+msgstr "Détails par Recette"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__display_name
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__display_name
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__display_name
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__display_name
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__display_name
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__display_type
+msgid "Display Type"
+msgstr "Type"
+
+#. module: mrp_food_menu
+#: model:ir.model.constraint,message:mrp_food_menu.constraint_mrp_food_menu_concatenated_component_product_uniq_menu_concat_component_product
+msgid "Duplicate concatenated Component Menu-Product-Date"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.constraint,message:mrp_food_menu.constraint_mrp_food_menu_concatenated_finished_boms_uniq_menu_concat_finish_product_bom
+msgid "Duplicate concatenated Finished BoM line"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.constraint,message:mrp_food_menu.constraint_mrp_food_menu_concatenated_intermediate_boms_uniq_menu_concat_inter_product_bom
+msgid "Duplicate concatenated Intermediate BoM line"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__description
+msgid "Field for external use, for example for PDF."
+msgstr "Champ pour un usage externe, par exemple pour un PDF."
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__internal_notes
+msgid "Field for internal use only."
+msgstr "Champ à usage interne seulement"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__finished_product_and_qty
+msgid "Finished Product And Qty"
+msgstr "Produits finis et Quantité"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_follower_ids
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_partner_ids
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__activity_type_icon
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu_line
+msgid "Food Menu Line"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu_concatenated_component_product
+msgid "Food Menu all Concatenated Component Products"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu_concatenated_component_product_detail
+msgid "Food Menu all Concatenated Component Products Detail"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu_concatenated_finished_boms
+msgid "Food Menu all Concatenated Finished BoMs"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu_concatenated_intermediate_boms
+msgid "Food Menu all Concatenated Intermediate BoMs"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.actions.act_window,name:mrp_food_menu.action_mrp_food_menu
+#: model:ir.ui.menu,name:mrp_food_menu.menu_food_menu
+msgid "Food Menus"
+msgstr "Menus"
+
+#. module: mrp_food_menu
+#: model:ir.model,name:mrp_food_menu.model_mrp_food_menu
+msgid "Food menu"
+msgstr "Menu"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "For"
+msgstr "Pour"
+
+#. module: mrp_food_menu
+#: model:ir.model.constraint,message:mrp_food_menu.constraint_mrp_food_menu_line_non_menu_null_fields
+msgid "Forbidden values on note and section menu line"
+msgstr "Valeurs interdites pour les notes et sections"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "Free comment"
+msgstr "Commentaire libre"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__has_message
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_exception_icon
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__activity_exception_icon
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__message_needaction
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__message_has_error
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__standard_price
+msgid ""
+"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "Intermediate products to produce"
+msgstr "Produits intermédiaires à produire"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__internal_notes
+msgid "Internal Notes"
+msgstr "Note interne"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_is_follower
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid ""
+"It will erased informations about received or not products. Are you sure ?"
+msgstr ""
+"Cela effacera l'informations de réception des produits. Sûr·e ?"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu____last_update
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product____last_update
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail____last_update
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms____last_update
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms____last_update
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__write_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__write_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__write_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__write_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__write_uid
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__write_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__write_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__write_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__write_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__write_date
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_main_attachment_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Make the menu modifiable"
+msgstr "Rendre le menu modifiable"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__menu_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__menu_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__menu_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__menu_id
+msgid "Menu"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__menu_line_ids
+msgid "Menu Line"
+msgstr "Ligne de menu"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Menu for New Year Eve"
+msgstr "Menu pour le nouvel an"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__name
+msgid "Menu name"
+msgstr "Nom du menu"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_has_error
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_ids
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.constraint,message:mrp_food_menu.constraint_mrp_food_menu_line_menu_required_fields_product_qty
+msgid "Missing required fields on menu line : product and quantity."
+msgstr ""
+"Il manque des champs obligatoires dans les lignes du menu : un produit et/ou"
+" une quantité"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields.selection,name:mrp_food_menu.selection__mrp_food_menu__state__modifiable
+msgid "Modifiable menu"
+msgstr "Menu modifiable"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__my_activity_date_deadline
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_date_deadline
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_summary
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_type_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "Not received"
+msgstr "Pas reçu"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields.selection,name:mrp_food_menu.selection__mrp_food_menu_line__display_type__line_note
+msgid "Note"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_needaction_counter
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__message_has_error_counter
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__message_needaction_counter
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__message_has_error_counter
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+msgid "Packaging"
+msgstr "Description"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+msgid "Price Unit"
+msgstr "Prix unitaire"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products
+msgid "Print Purchase List with selected lines"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_finished_boms_all_report
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_intermediate_product_all_report
+msgid "Print Summary + BoMs"
+msgstr "Imprimer Résumé + Recettes"
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_intermediate_product_report
+msgid "Print Summary Intermediate Product to Produce"
+msgstr "Imprimer Résumé des produits intermédaires à produire"
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_finished_boms_summary_report
+msgid "Print Summary quantities to prepare"
+msgstr "Imprimer Résumé des quantités à préparer"
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_finished_boms_bom_report
+msgid "Print all finished BoMs"
+msgstr "Imprimer toutes les Recettes"
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_intermediate_product_bom_report
+msgid "Print all intermediate BoMs"
+msgstr "Imprimer les Recettes Intermédiaires"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__product_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__product_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__product_id
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "Product"
+msgstr "Produit"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_category_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__product_category_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__product_category_id
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "Product Category"
+msgstr "Catégorie de produit"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_category_name
+msgid "Product Category Name"
+msgstr "Catégorie de produit"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_name
+msgid "Product Name"
+msgstr "Produit"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_tag_ids
+msgid "Product Tags"
+msgstr "Tags de produits"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__product_wo_bom_ids
+msgid "Product Wo Bom"
+msgstr "Produit sans Recette"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__product_wo_bom_qty
+msgid "Product Wo Bom Qty"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.actions.act_window,name:mrp_food_menu.action_food_menu_to_product_product
+msgid "Products"
+msgstr "Produits"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_po_id
+msgid "Purchase Unit of Measure"
+msgstr "Unité de mesure d'achat"
+
+#. module: mrp_food_menu
+#: model:ir.actions.report,name:mrp_food_menu.food_menu_concatenated_component_report
+msgid "Purchase list"
+msgstr "Liste de courses"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+msgid "Quantities to be prepared"
+msgstr "Quantités à préparer"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_qty
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__quantity
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__product_uom_qty
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__product_uom_qty
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__product_uom_qty
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_po_qty
+msgid "Quantity with Purchase UoM"
+msgstr "Quantité"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Quick and nurrishing vegan meal"
+msgstr "Repas végan rapide et nourrissant"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields.selection,name:mrp_food_menu.selection__mrp_food_menu__state__blocked
+msgid "Ready to receive component products"
+msgstr "Prêt à recevoir les matières premières"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__received
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products_search
+msgid "Received"
+msgstr "Reçu"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Recompute concatenated quantities"
+msgstr "Recalculer toutes les quantités"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "Replace flour by rice  flour for a gluten-free option."
+msgstr ""
+"Remplacer la farine de blé par de la farine de riz pour une variante sans "
+"gluten."
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__activity_user_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__lst_price
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__lst_price
+msgid "Sales Price"
+msgstr "Prix de vente"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields.selection,name:mrp_food_menu.selection__mrp_food_menu_line__display_type__line_section
+msgid "Section"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__state
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__menu_state
+msgid "State"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__activity_state
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__subtotal_standard_price
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__subtotal
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+msgid "Subtotal"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_line__display_type
+msgid "Technical field for UX purpose."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__lst_price
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_line__lst_price
+msgid ""
+"The sale price is managed from the product template. Click on the 'Configure"
+" Variants' button to set the extra attribute prices."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_concatenated_component_products
+msgid "Total Cost"
+msgstr "Coût total"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__activity_exception_decoration
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__standard_price
+msgid "Unit Standard Price"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__product_uom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product_detail__product_uom_po_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_finished_boms__product_uom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_intermediate_boms__product_uom_id
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_line__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unité de mesure"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concat_finished_boms
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_concatenated_component
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.report_intermediate_product
+msgid "UoM"
+msgstr "UdM"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__bom_ids
+msgid "Used in BoMs"
+msgstr "Utilisé dans ces Recettes"
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu__website_message_ids
+#: model:ir.model.fields,field_description:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: mrp_food_menu
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu__website_message_ids
+#: model:ir.model.fields,help:mrp_food_menu.field_mrp_food_menu_concatenated_component_product__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: mrp_food_menu
+#. odoo-python
+#: code:addons/mrp_food_menu/models/food_menu.py:0
+#, python-format
+msgid "for "
+msgstr "pour "
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid ""
+"📌 You can't modify this menu.\n"
+"                         Click on Component Products to mark them as received or not."
+msgstr ""
+"📌 Vous ne pouvez pas modifier le menu. Cliquer sur 'Matières premières' pour marquer la réception des Produits."
