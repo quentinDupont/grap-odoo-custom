@@ -109,11 +109,10 @@ class FoodMenu(models.Model):
 
         for menu in self:
             # Delete all lines to recompute them
-            print("============ 1) Direct les MP du Menu genre le pain")
             Concat_component_prod.search([("menu_id", "=", menu.id)]).unlink()
             futur_concat_component = {}
 
-            # 1) Line without BoM → directly component (e.g bread)
+            # ======  1) Line without BoM → directly component (e.g bread)
             for line in menu.menu_line_ids.filtered(
                 lambda x: not x.bom_id and not x.display_type
             ):
@@ -132,13 +131,12 @@ class FoodMenu(models.Model):
 
                 futur_concat_component[key]["product_uom_qty"] += line.product_uom_qty
 
-            # 2) Product lines of finished BoMs without lines of intermediate product
+            # ======  2) Product lines of finished BoMs without lines of intermediate product
             concat_finished_boms = Concat_finished_bom.search(
                 [
                     ("menu_id", "=", menu.id),
                 ]
             )
-            print("============ 2) Produits des FT finis")
             for concat_finished_bom in concat_finished_boms:
                 for bom_line in concat_finished_bom.mapped(
                     "bom_id.bom_line_ids"
@@ -174,7 +172,6 @@ class FoodMenu(models.Model):
                             "concatenated_details": [],
                         }
 
-                    # import pdb; pdb.set_trace()
                     # Quantité de recette de lignes concaténées * la quantité du produit dans la recette (divisée par les unités de la recette)
                     futur_concat_component[key]["product_uom_qty"] += new_qty
                     futur_concat_component[key]["bom_ids"] += [
@@ -184,13 +181,12 @@ class FoodMenu(models.Model):
                         Command.link(detail.id)
                     ]
 
-            # 3) Product lines of intermediate BoMs
+            # ====== 3) Product lines of intermediate BoMs
             concat_inter_boms = Concat_inter_bom.search(
                 [
                     ("menu_id", "=", menu.id),
                 ]
             )
-            print("============ 3) Produits des FT intermediate")
             for concat_inter_bom in concat_inter_boms:
                 for bom_line in concat_inter_bom.mapped("bom_id.bom_line_ids").filtered(
                     lambda x: not x.display_type
@@ -225,7 +221,6 @@ class FoodMenu(models.Model):
                             "concatenated_details": [],
                         }
 
-                    # import pdb; pdb.set_trace()
                     # Quantité de recette de lignes concaténées * la quantité du produit dans la recette (divisée par les unités de la recette)
                     futur_concat_component[key]["product_uom_qty"] += new_qty
                     futur_concat_component[key]["bom_ids"] += [
