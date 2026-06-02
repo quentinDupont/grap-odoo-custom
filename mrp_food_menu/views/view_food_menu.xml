@@ -7,6 +7,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <odoo>
 
     <!-- Action record -->
+    <record id="action_food_menu_to_mrp_bom" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id', 'in', context.get('ctx_mrp_bom_ids',False))]</field>
+    </record>
+
     <record id="action_food_menu_to_product_product" model="ir.actions.act_window">
         <field name="name">Products</field>
         <field name="res_model">product.product</field>
@@ -63,9 +70,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <field name="product_wo_bom_ids" invisible="1"/>
+                        <field name="mrp_bom_ids" invisible="1"/>
                         <field name="concatenated_component_products_ids" invisible="1"/>
                         <field name="concatenated_intermediate_bom_ids" invisible="1"/>
                         <field name="concatenated_finished_bom_ids" invisible="1"/>
+                        <button class="oe_stat_button" type="action" icon="fa-list"
+                            name="%(action_food_menu_to_mrp_bom)d"
+                            context="{'ctx_mrp_bom_ids': mrp_bom_ids}">
+                            <div class="o_field_widget o_stat_info">
+                              <span class="o_stat_text">All BoMs</span>
+                            </div>
+                        </button>
                         <button class="oe_stat_button" type="action" icon="fa-warning"
                             name="%(action_food_menu_to_product_product)d"
                             context="{'ctx_product_wo_bom_ids': product_wo_bom_ids}"
@@ -115,7 +130,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field colspan="12" name="menu_line_ids"
                                attrs="{'readonly': [('state', '=', 'blocked')]}"
                                nolabel="1" widget="section_and_note_one2many">
-                            <tree editable="bottom">
+                            <tree editable="bottom" limit="200">
 
                                 <control>
                                     <create name="add_product_control" string="Add a product" />

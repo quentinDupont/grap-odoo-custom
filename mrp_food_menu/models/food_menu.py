@@ -41,6 +41,12 @@ class FoodMenu(models.Model):
         inverse_name="menu_id",
     )
 
+    # Quick access to BoMs
+    mrp_bom_ids = fields.One2many(
+        comodel_name="mrp.bom",
+        compute="_compute_mrp_bom_ids",
+    )
+
     # Quick access to Products without any BoM
     product_wo_bom_ids = fields.One2many(
         comodel_name="product.product",
@@ -67,7 +73,12 @@ class FoodMenu(models.Model):
         inverse_name="menu_id",
     )
 
-    # Methods for Products without any BoM
+    # COMPUTE METHODS
+    @api.depends("menu_line_ids")
+    def _compute_mrp_bom_ids(self):
+        for food_menu in self:
+            food_menu.mrp_bom_ids = food_menu.mapped("menu_line_ids.bom_id")
+
     @api.depends("menu_line_ids")
     def _compute_product_wo_bom_ids(self):
         for food_menu in self:

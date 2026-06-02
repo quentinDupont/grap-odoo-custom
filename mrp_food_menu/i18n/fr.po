@@ -22,6 +22,11 @@ msgstr "<b>Total basé sur le coût des Produits:</b>"
 
 #. module: mrp_food_menu
 #: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
+msgid "<span class=\"o_stat_text\">All BoMs</span>"
+msgstr "<span class=\"o_stat_text\">Recettes</span>"
+
+#. module: mrp_food_menu
+#: model_terms:ir.ui.view,arch_db:mrp_food_menu.view_food_menu_form
 msgid "<span class=\"o_stat_text\">Component Products</span>"
 msgstr "<span class=\"o_stat_text\">Matières premières</span>"
 
