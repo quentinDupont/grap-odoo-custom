@@ -9,11 +9,14 @@ class FoodMenu(models.Model):
     _name = "mrp.food.menu"
     _description = "Food menu"
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    _order = "date desc, name"
 
     name = fields.Char(
         help="Menu name",
         required=True,
     )
+
+    date = fields.Date()
 
     _STATE_SELECTION = [
         ("modifiable", "Modifiable menu"),

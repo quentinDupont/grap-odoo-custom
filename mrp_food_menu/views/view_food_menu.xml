@@ -121,6 +121,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <h1><field name="name" placeholder="Menu for New Year Eve"/></h1>
                     </div>
                     <group class="menu_fields">
+                        <field name="date"/>
                         <field name="description" placeholder="Quick and nurrishing vegan meal"/>
                         <field name="internal_notes" placeholder="Replace flour by rice  flour for a gluten-free option."/>
                         <field name="company_id" groups="base.group_multi_company"/>
@@ -195,6 +196,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="date"/>
             </tree>
         </field>
     </record>
